@@ -18,6 +18,7 @@ class RoleController extends AppBaseController
 
     public function __construct(RoleRepository $roleRepo)
     {
+        $this->middleware('can:gestion roles');
         $this->roleRepository = $roleRepo;
     }
 

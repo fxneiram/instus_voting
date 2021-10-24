@@ -18,6 +18,7 @@ class PermissionController extends AppBaseController
 
     public function __construct(PermissionRepository $permissionRepo)
     {
+        $this->middleware('can:gestion permisos');
         $this->permissionRepository = $permissionRepo;
     }
 

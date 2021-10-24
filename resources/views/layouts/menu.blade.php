@@ -1,10 +1,12 @@
+@can('autogestion')
 <li class="nav-item">
-    <a href="{{url('/') }}"
+    <a href="{{url('/home') }}"
        class="nav-link {{ Request::is('home*') ? 'active' : '' }}">
         <i class="nav-icon fa fa-home"></i>
         <p>Inicio</p>
     </a>
 </li>
+@endcan
 
 <li class="nav-item">
     <a href="{{ route('users.index') }}"
