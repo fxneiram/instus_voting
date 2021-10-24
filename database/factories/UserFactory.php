@@ -23,12 +23,12 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
-        'email' => $this->faker->word,
-        'email_verified_at' => $this->faker->date('Y-m-d H:i:s'),
-        'password' => $this->faker->word,
-        'remember_token' => $this->faker->word,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s')
+            'email' => $this->faker->unique()->safeEmail,
+            'email_verified_at' => $this->faker->date('Y-m-d H:i:s'),
+            'password' => bcrypt('12345678'),
+            'remember_token' => $this->faker->word,
+            'created_at' => $this->faker->date('Y-m-d H:i:s'),
+            'updated_at' => $this->faker->date('Y-m-d H:i:s')
         ];
     }
 }
