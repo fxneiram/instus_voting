@@ -23,3 +23,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::resource('users', App\Http\Controllers\UserController::class);
+
+
+Route::resource('permissions', App\Http\Controllers\PermissionController::class);
