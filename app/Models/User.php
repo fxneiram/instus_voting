@@ -37,4 +37,36 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    public static $rules = [
+        'name' => 'required|string|max:191',
+        'email' => 'required|string|max:191',
+        'password' => 'nullable|string|max:191',
+        'created_at' => 'nullable',
+        'updated_at' => 'nullable'
+    ];
+
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public static $messages = [
+        'name.required' => 'El nombre es obligatorio',
+        'name.max' => 'El nombre es demasiado largo',
+
+        'email.required' => 'El correo es obligatorio',
+        'email.max' => 'El correo es demasiado largo',
+        'email.email' => 'El correo no tiene un formato válido',
+        'email.unique' => 'El correo ya se encuentra en uso',
+
+        'password.required' => 'La contraseña es obligatoria',
+        'password.max' => 'La contraseña  es demasiado larga',
+        'password.min' => 'La contraseña  es demasiado corta'
+    ];
 }
