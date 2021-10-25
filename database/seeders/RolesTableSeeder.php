@@ -27,5 +27,6 @@ class RolesTableSeeder extends Seeder
         ]);
 
         $web->givePermissionTo('autogestion');
+        $web->givePermissionTo('votar');
     }
 }

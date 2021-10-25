@@ -30,5 +30,9 @@ class PermissionsTableSeeder extends Seeder
             'name' => 'autogestion'
         ]);
 
+        Permission::create([
+            'name' => 'votar'
+        ]);
+
     }
 }

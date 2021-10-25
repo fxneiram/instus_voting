@@ -20,8 +20,8 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('12345678'),
         ]);
 
-        //$user->syncRoles(['Admin', 'Comun']);
-        $user->syncRoles(['Admin']);
+        $user->syncRoles(['Admin', 'Comun']);
+        //$user->syncRoles(['Admin']);
 
         User::factory()->count(149)->create()
             ->each(function ($user) {
