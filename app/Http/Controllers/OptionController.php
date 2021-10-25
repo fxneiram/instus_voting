@@ -133,4 +133,5 @@ class OptionController extends AppBaseController
 
         return redirect(route('options.index', $voting));
     }
+
 }

@@ -28,7 +28,7 @@
 
                     </td>
                     <td>
-                        <a href="#" class="text-muted" title="Votar">
+                        <a href="{{route('voting.choice', $voting->id)}}" class="text-muted" title="Votar">
                             <i class="fas fa-edit"></i>
                         </a>
                         <a href="#" class="text-muted" title="Resultados">

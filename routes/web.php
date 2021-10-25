@@ -51,4 +51,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::patch('votings/{voting}/options/{option}/update', [App\Http\Controllers\OptionController::class, 'update'])
         ->name('options.update');
+
+    Route::get('votings/{voting}/choice', [App\Http\Controllers\VotingController::class, 'choice'])
+        ->name('voting.choice');
+
+    Route::post('votings/{voting}/chose', [App\Http\Controllers\VotingController::class, 'chose'])
+        ->name('voting.chose');
 });

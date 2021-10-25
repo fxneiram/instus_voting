@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\DataTables\VotingDataTable;
 use App\Http\Requests;
+use App\Http\Requests\ChoseRequest;
 use App\Http\Requests\CreateVotingRequest;
 use App\Http\Requests\UpdateVotingRequest;
 use App\Models\Voting;
 use App\Repositories\VotingRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Http\Request;
 use Response;
 
 class VotingController extends AppBaseController
@@ -181,5 +183,23 @@ class VotingController extends AppBaseController
         }
 
         return redirect(route('votings.index'));
+    }
+
+    public function choice($id)
+    {
+        $voting = $this->votingRepository->find($id);
+
+        if (empty($voting)) {
+            Flash::error('Voting not found');
+
+            return redirect(route('votings.index'));
+        }
+
+        return view('chose')->with('voting', $voting);
+    }
+
+    public function chose($id, ChoseRequest $requests)
+    {
+        dd($requests->all());
     }
 }
