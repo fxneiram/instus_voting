@@ -77,7 +77,7 @@ class OptionController extends AppBaseController
         if (empty($option)) {
             Flash::error('Option not found');
 
-            return redirect(route('options.index'));
+            return redirect(route('options.index',  $voting));
         }
 
         return view('options.edit')
@@ -124,7 +124,7 @@ class OptionController extends AppBaseController
         if (empty($option)) {
             Flash::error('Option not found');
 
-            return redirect(route('options.index'));
+            return redirect(route('options.index',  $voting));
         }
 
         $this->optionRepository->delete($id);

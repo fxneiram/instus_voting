@@ -41,7 +41,8 @@ class OptionDataTable extends DataTable
      */
     public function query(Option $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()
+            ->where('voting_id', $this->voting_id);
     }
 
     /**
