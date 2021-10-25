@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('votings', App\Http\Controllers\VotingController::class);
 
-    Route::post('votings{voting}/publish', [App\Http\Controllers\VotingController::class, 'publish'])
+    Route::get('votings/{voting}/publish', [App\Http\Controllers\VotingController::class, 'publish'])
         ->name('votings.publish');
 
     Route::get('votings/{voting}/options', [App\Http\Controllers\OptionController::class, 'index'])

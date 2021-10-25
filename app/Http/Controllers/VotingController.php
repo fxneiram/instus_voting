@@ -6,6 +6,7 @@ use App\DataTables\VotingDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateVotingRequest;
 use App\Http\Requests\UpdateVotingRequest;
+use App\Models\Voting;
 use App\Repositories\VotingRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
@@ -63,7 +64,7 @@ class VotingController extends AppBaseController
     /**
      * Display the specified Voting.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */
@@ -83,7 +84,7 @@ class VotingController extends AppBaseController
     /**
      * Show the form for editing the specified Voting.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */
@@ -103,7 +104,7 @@ class VotingController extends AppBaseController
     /**
      * Update the specified Voting in storage.
      *
-     * @param  int              $id
+     * @param int $id
      * @param UpdateVotingRequest $request
      *
      * @return Response
@@ -128,7 +129,7 @@ class VotingController extends AppBaseController
     /**
      * Remove the specified Voting from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */
@@ -151,14 +152,8 @@ class VotingController extends AppBaseController
 
     /*OPTIONS*/
 
-    /**
-     * Show the form for editing the specified Voting.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function config($id)
+
+    public function publish($id)
     {
         $voting = $this->votingRepository->find($id);
 
@@ -168,33 +163,23 @@ class VotingController extends AppBaseController
             return redirect(route('votings.index'));
         }
 
-        return view('votings.config.index')->with('voting', $voting);
-    }
+        $current_time = \Carbon\Carbon::now();
 
-    public function addOption($id)
-    {
-        $voting = $this->votingRepository->find($id);
 
-        if (empty($voting)) {
-            Flash::error('Voting not found');
-
+        if ($voting->public) {
+            Flash::error('Esta votacón ya se encuentra publicada.');
             return redirect(route('votings.index'));
         }
 
-        return view('votings.config.create')->with('voting', $voting);
-    }
+        if ($voting->begin_at->gt($current_time) and $voting->end_at->gt($current_time)) {
 
+            Voting::where('id', $id)->update(['public' => 1]);
 
-    public function storeOption($id, $request)
-    {
-        $voting = $this->votingRepository->find($id);
-
-        if (empty($voting)) {
-            Flash::error('Voting not found');
-
-            return redirect(route('votings.index'));
+            Flash::success('Votacón publicada correctamente.');
+        } else {
+            Flash::error('La fecha de publicación caducó');
         }
 
-        return view('votings.config.create')->with('voting', $voting);
+        return redirect(route('votings.index'));
     }
 }
