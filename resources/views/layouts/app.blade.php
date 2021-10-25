@@ -40,6 +40,11 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+<div class="modal fade" id="ajax-modal" tabindex="-1" role="dialog" aria-labelledby="ajax-modal" aria-hidden="true">
+    <div class="modal-content">
+        @stack('modal_content')
+    </div>
+</div>
 <div class="wrapper">
     <!-- Main Header -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">

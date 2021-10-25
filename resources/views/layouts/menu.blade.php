@@ -35,3 +35,10 @@
 </li>
 
 
+<li class="nav-item">
+    <a href="{{ route('votings.index') }}"
+       class="nav-link {{ Request::is('votings*') ? 'active' : '' }}">
+        <p>Votings</p>
+    </a>
+</li>
+

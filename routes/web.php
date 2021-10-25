@@ -28,6 +28,27 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('permissions', App\Http\Controllers\PermissionController::class);
 
     Route::resource('roles', App\Http\Controllers\RoleController::class);
+
+    Route::resource('votings', App\Http\Controllers\VotingController::class);
+
+    Route::post('votings{voting}/publish', [App\Http\Controllers\VotingController::class, 'publish'])
+        ->name('votings.publish');
+
+    Route::get('votings/{voting}/options', [App\Http\Controllers\OptionController::class, 'index'])
+        ->name('options.index');
+
+    Route::get('votings/{voting}/options/create', [App\Http\Controllers\OptionController::class, 'create'])
+        ->name('options.create');
+
+    Route::post('votings/{voting}/options/store', [App\Http\Controllers\OptionController::class, 'store'])
+        ->name('options.store');
+
+    Route::delete('votings/{voting}/options/{option}/destroy', [App\Http\Controllers\OptionController::class, 'destroy'])
+        ->name('options.destroy');
+
+    Route::get('votings/{voting}/options/{option}/edit', [App\Http\Controllers\OptionController::class, 'edit'])
+        ->name('options.edit');
+
+    Route::patch('options/{option}/update', [App\Http\Controllers\OptionController::class, 'update'])
+        ->name('options.update');
 });
-
-
