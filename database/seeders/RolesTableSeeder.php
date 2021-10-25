@@ -21,6 +21,7 @@ class RolesTableSeeder extends Seeder
         $admin->givePermissionTo('gestion usuarios');
         $admin->givePermissionTo('gestion roles');
         $admin->givePermissionTo('gestion permisos');
+        $admin->givePermissionTo('gestion votacion');
 
         $web = Role::create([
             'name' => 'Comun'
