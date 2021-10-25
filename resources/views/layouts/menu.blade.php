@@ -38,7 +38,8 @@
 <li class="nav-item">
     <a href="{{ route('votings.index') }}"
        class="nav-link {{ Request::is('votings*') ? 'active' : '' }}">
-        <p>Votings</p>
+        <i class="nav-icon fas fa-chart-pie"></i>
+        <p>Votaciones</p>
     </a>
 </li>
 
