@@ -11,12 +11,12 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
           integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <!-- AdminLTE -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/css/adminlte.min.css"
           integrity="sha512-mxrUXSjrxl8vm5GwafxcqTrEwO1/oBNU25l20GODsysHReZo4uhVISzAKzaABH6/tTfAxZrY2FprmeAP5UZY8A=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <!-- iCheck -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/icheck-bootstrap/3.0.1/icheck-bootstrap.min.css"
@@ -38,7 +38,7 @@
 
     <div class="card">
         <div class="card-body register-card-body">
-            <p class="login-box-msg">@lang('auth.registration.title')</p>
+            <p class="login-box-msg">Registro</p>
 
             <form method="post" action="{{ route('register') }}">
                 @csrf
@@ -48,7 +48,7 @@
                            name="name"
                            class="form-control @error('name') is-invalid @enderror"
                            value="{{ old('name') }}"
-                           placeholder="@lang('auth.full_name')">
+                           placeholder="Nombre Completo">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -64,7 +64,7 @@
                            name="email"
                            value="{{ old('email') }}"
                            class="form-control @error('email') is-invalid @enderror"
-                           placeholder="@lang('auth.email')">
+                           placeholder="Correo">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -79,7 +79,7 @@
                     <input type="password"
                            name="password"
                            class="form-control @error('password') is-invalid @enderror"
-                           placeholder="@lang('auth.password')">
+                           placeholder="Contraseña">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -94,7 +94,7 @@
                     <input type="password"
                            name="password_confirmation"
                            class="form-control"
-                           placeholder="@lang('auth.confirm_password')">
+                           placeholder="Contraseña">
                     <div class="input-group-append">
                         <div class="input-group-text"><span class="fas fa-lock"></span></div>
                     </div>
@@ -105,20 +105,20 @@
                         <div class="icheck-primary">
                             <input type="checkbox" id="agreeTerms" name="terms" value="agree">
                             <label for="agreeTerms">
-                                @lang('auth.registration.i_agree')
-                                <a href="#">@lang('auth.registration.terms')</a>
+                                Acepto los
+                                <a href="#">términos</a>
                             </label>
                         </div>
                     </div>
                     <!-- /.col -->
                     <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block">@lang('auth.register')</button>
+                        <button type="submit" class="btn btn-primary btn-block">Registrar</button>
                     </div>
                     <!-- /.col -->
                 </div>
             </form>
 
-            <a href="{{ route('login') }}" class="text-center">@lang('auth.registration.have_membership')</a>
+            <a href="{{ route('login') }}" class="text-center">Iniciar Sesión</a>
         </div>
         <!-- /.form-box -->
     </div><!-- /.card -->

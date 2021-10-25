@@ -10,7 +10,7 @@
                 <div class="col-sm-6">
                     <a class="btn btn-primary float-right"
                        href="{{ route('votings.create') }}">
-                        Add New
+                        Registrar
                     </a>
                 </div>
             </div>

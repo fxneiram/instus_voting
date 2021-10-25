@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ config('app.name') }} |  @lang('auth.login.title')</title>
+    <title>{{ config('app.name') }} | Login</title>
 
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -11,12 +11,12 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
           integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <!-- AdminLTE -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/css/adminlte.min.css"
           integrity="sha512-mxrUXSjrxl8vm5GwafxcqTrEwO1/oBNU25l20GODsysHReZo4uhVISzAKzaABH6/tTfAxZrY2FprmeAP5UZY8A=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <!-- iCheck -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/icheck-bootstrap/3.0.1/icheck-bootstrap.min.css"
@@ -43,7 +43,7 @@
     <div class="card">
         <div class="card-body login-card-body">
             <p class="login-box-msg">
-                @lang('auth.login.title')
+                Iniciar Sesión
             </p>
 
             <form method="post" action="{{ url('/login') }}">
@@ -53,7 +53,7 @@
                     <input type="email"
                            name="email"
                            value="{{ old('email') }}"
-                           placeholder="@lang('auth.email')"
+                           placeholder="Correo"
                            class="form-control @error('email') is-invalid @enderror">
                     <div class="input-group-append">
                         <div class="input-group-text"><span class="fas fa-envelope"></span></div>
@@ -66,7 +66,7 @@
                 <div class="input-group mb-3">
                     <input type="password"
                            name="password"
-                           placeholder="@lang('auth.password')"
+                           placeholder="Contraseña"
                            class="form-control @error('password') is-invalid @enderror">
                     <div class="input-group-append">
                         <div class="input-group-text">
@@ -83,22 +83,22 @@
                     <div class="col-8">
                         <div class="icheck-primary">
                             <input type="checkbox" id="remember">
-                            <label for="remember">@lang('auth.remember_me')</label>
+                            <label for="remember">Recuerdame</label>
                         </div>
                     </div>
 
                     <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block">@lang('auth.sign_in')</button>
+                        <button type="submit" class="btn btn-primary btn-block">Acceder</button>
                     </div>
 
                 </div>
             </form>
 
             <p class="mb-1">
-                <a href="{{ route('password.request') }}">@lang('auth.login.forgot_password')</a>
+                <a href="{{ route('password.request') }}">Recuperar Contraseña</a>
             </p>
             <p class="mb-0">
-                <a href="{{ route('register') }}" class="text-center">@lang('auth.login.register_membership')</a>
+                <a href="{{ route('register') }}" class="text-center">Registro</a>
             </p>
         </div>
         <!-- /.login-card-body -->

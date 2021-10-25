@@ -7,12 +7,6 @@
                 <div class="col-sm-6">
                     <h1>Permissions</h1>
                 </div>
-                <div class="col-sm-6">
-                    <a class="btn btn-primary float-right"
-                       href="{{ route('permissions.create') }}">
-                        Add New
-                    </a>
-                </div>
             </div>
         </div>
     </section>
@@ -24,12 +18,12 @@
         <div class="clearfix"></div>
 
         <div class="card">
-            <div class="card-body p-0">
+            <div class="card-body">
                 @include('permissions.table')
 
                 <div class="card-footer clearfix">
                     <div class="float-right">
-                        
+
                     </div>
                 </div>
             </div>
