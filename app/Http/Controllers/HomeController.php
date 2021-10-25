@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Voting;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $current_time = \Carbon\Carbon::now();
+
+        $vontings = Voting::all()
+            ->where('public', true)
+            ->where('end_at', '>', $current_time);
+
+        return view('home')
+            ->with('vontings', $vontings);
     }
 }
