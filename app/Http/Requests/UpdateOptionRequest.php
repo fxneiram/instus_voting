@@ -25,8 +25,10 @@ class UpdateOptionRequest extends FormRequest
      */
     public function rules()
     {
+        $this->merge(['voting_id' => $this->voting]);
+
         $rules = Option::$rules;
-        
+
         return $rules;
     }
 }

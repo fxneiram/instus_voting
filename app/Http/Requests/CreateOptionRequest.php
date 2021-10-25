@@ -25,6 +25,8 @@ class CreateOptionRequest extends FormRequest
      */
     public function rules()
     {
+        $this->merge(['voting_id' => $this->voting]);
+
         return Option::$rules;
     }
 }
