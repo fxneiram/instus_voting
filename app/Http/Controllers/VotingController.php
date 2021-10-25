@@ -24,13 +24,14 @@ class VotingController extends AppBaseController
     public function __construct(VotingRepository $votingRepo)
     {
         $this->votingRepository = $votingRepo;
-        /*
-         $this->middleware('permission:roles.index')->only('index');
-        $this->middleware('permission:roles.create')->only(['create', 'store']);
-        $this->middleware('permission:roles.edit')->only(['edit', 'update']);
-        $this->middleware('permission:roles.show')->only('show');
-        $this->middleware('permission:roles.destroy')->only('destroy');
-         */
+
+        $this->middleware('can:gestion roles')
+            ->only([
+                'index', 'create', 'store', 'edit', 'update', 'show', 'destroy', 'publish'
+            ]);
+
+        $this->middleware('can:votar')
+            ->only(['result', 'choice', 'chose']);
     }
 
     /**
@@ -160,9 +161,6 @@ class VotingController extends AppBaseController
 
         return redirect(route('votings.index'));
     }
-
-    /*OPTIONS*/
-
 
     public function publish($id)
     {
