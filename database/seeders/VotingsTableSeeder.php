@@ -37,6 +37,8 @@ class VotingsTableSeeder extends Seeder
             'voting_id' => 1,
             'description' => 'op 3',
         ]);
-        //$votacion->options()->
+        //
+
+        Voting::factory()->count(20)->create();
     }
 }
