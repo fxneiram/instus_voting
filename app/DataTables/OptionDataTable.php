@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Option;
+use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
@@ -61,9 +62,6 @@ class OptionDataTable extends DataTable
                 'stateSave' => true,
                 'order' => [[0, 'desc']],
                 'buttons' => [
-                    ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
                 ],
@@ -78,8 +76,12 @@ class OptionDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'voting_id',
-            'description'
+            Column::make('description')
+                ->title('Descripción')
+                ->orderable(true)
+                ->searchable(false)
+                ->exportable(true)
+                ->printable(true)
         ];
     }
 

@@ -24,7 +24,7 @@
         <div class="clearfix"></div>
 
         <div class="card">
-            <div class="card-body p-0">
+            <div class="card-body">
                 @include('options.table')
 
                 <div class="card-footer clearfix">
@@ -32,6 +32,10 @@
 
                     </div>
                 </div>
+            </div>
+
+            <div class="card-footer">
+                <a href="{{ route('votings.index') }}" class="btn btn-default">Volver</a>
             </div>
 
         </div>
