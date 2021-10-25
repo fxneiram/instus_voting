@@ -6,6 +6,8 @@ use App\DataTables\OptionDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateOptionRequest;
 use App\Http\Requests\UpdateOptionRequest;
+use App\Models\Voting;
+use App\Models\VotingResult;
 use App\Repositories\OptionRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
@@ -57,6 +59,10 @@ class OptionController extends AppBaseController
 
         $option = $this->optionRepository->create($input);
 
+        VotingResult::create([
+            'voting_id' => $voting,
+            'option_id' => $option->id,
+        ]);
         Flash::success('Option saved successfully.');
 
         return redirect(route('options.index', $voting));
@@ -77,7 +83,7 @@ class OptionController extends AppBaseController
         if (empty($option)) {
             Flash::error('Option not found');
 
-            return redirect(route('options.index',  $voting));
+            return redirect(route('options.index', $voting));
         }
 
         return view('options.edit')
@@ -124,10 +130,14 @@ class OptionController extends AppBaseController
         if (empty($option)) {
             Flash::error('Option not found');
 
-            return redirect(route('options.index',  $voting));
+            return redirect(route('options.index', $voting));
         }
 
         $this->optionRepository->delete($id);
+
+        VotingResult::where('voting_id', $voting)
+            ->where('option_id', $id)
+            ->delete();
 
         Flash::success('Option deleted successfully.');
 

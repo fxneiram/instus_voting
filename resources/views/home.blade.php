@@ -13,7 +13,7 @@
 
     <div class="container">
         <div class="row">
-
+            @include('adminlte-templates::common.errors')
             <div class="col-sm-12">
                 @include('active_votings')
             </div>

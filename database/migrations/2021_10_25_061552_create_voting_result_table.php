@@ -17,8 +17,8 @@ class CreateVotingResultTable extends Migration
             $table->id();
             $table->unsignedInteger('voting_id');
             $table->unsignedInteger('option_id');
-            $table->unsignedInteger('count');
-            
+            $table->unsignedInteger('total')->default(0);
+
             $table->timestamps();
         });
     }

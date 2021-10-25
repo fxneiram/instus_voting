@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middlewareGroups' => 'auth'], function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -57,4 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('votings/{voting}/chose', [App\Http\Controllers\VotingController::class, 'chose'])
         ->name('voting.chose');
+
+    Route::get('votings/{voting}/result', [App\Http\Controllers\VotingController::class, 'result'])
+        ->name('voting.result');
 });

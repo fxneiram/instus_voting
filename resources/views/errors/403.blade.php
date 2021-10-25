@@ -23,4 +23,6 @@
                     No tiene la autorización requerida.
                 </p>
             </div>
+        </div>
+    </section>
 @endsection

@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Exceptions\VotingException;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -70,4 +72,32 @@ class User extends Authenticatable
         'password.max' => 'La contraseña  es demasiado larga',
         'password.min' => 'La contraseña  es demasiado corta'
     ];
+
+    public function vote($data)
+    {
+
+        $voting_id = $data['voting_id'];
+        $option_id = $data['option_id'];
+        $user_id = $data['user_id'];
+
+        DB::beginTransaction();
+
+        try {
+            DB::insert('insert into user_voting (user_id, voting_id) values( ?, ? )',
+                [$user_id, $voting_id]
+            );
+
+            DB::insert('update voting_result set total = (voting_result.total + 1) WHERE voting_id = ? AND option_id = ?',
+                [$voting_id, $option_id]);
+
+            DB::commit();
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            throw new VotingException();
+            //return false;
+        }
+
+        return true;
+    }
 }

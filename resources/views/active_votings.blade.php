@@ -27,13 +27,23 @@
                         </span>
 
                     </td>
-                    <td>
-                        <a href="{{route('voting.choice', $voting->id)}}" class="text-muted" title="Votar">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                        <a href="#" class="text-muted" title="Resultados">
-                            <i class="fas fa-eye"></i>
-                        </a>
+                    <td class="text-center">
+                        <div class="btn-group">
+                            @can('votar')
+                                <a href="{{route('voting.choice', $voting->id)}}"
+                                   class="btn btn-default btn-sm text-muted"
+                                   title="Votar">
+                                    <i class="fas fa-edit"></i>
+                                    Votar
+                                </a>
+                            @endcan
+                            @can('gestion votacion')
+                                <a href="#" class=" btn btn-default btn-sm text-muted" title="Resultados">
+                                    <i class="fas fa-eye"></i>
+                                    Ver
+                                </a>
+                            @endcan
+                        </div>
                     </td>
                 </tr>
             @endforeach

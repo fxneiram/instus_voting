@@ -4,7 +4,7 @@
 namespace App\Http\Requests;
 
 
-use App\Models\Option;
+use App\Models\UserVoting;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,8 +28,18 @@ class ChoseRequest extends FormRequest
      */
     public function rules()
     {
-        $this->merge(['user_id' => Auth::id()]);
+        $rules = UserVoting::$rules;
 
-        return [];
+        $this->merge(['user_id' => Auth::id() . '']);
+
+        $rules['user_id'] = $rules['user_id'] . ',' . $this->voting_id;
+        $rules['option_id'] = 'required';
+
+        return $rules;
+    }
+
+    public function messages()
+    {
+        return UserVoting::$messages;
     }
 }

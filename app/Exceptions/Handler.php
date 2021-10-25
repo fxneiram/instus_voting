@@ -35,8 +35,17 @@ class Handler extends ExceptionHandler
         $this->renderable(function (\Spatie\Permission\Exceptions\UnauthorizedException $e, $request) {
             return response()->json([
                 'responseMessage' => 'You do not have the required authorization.',
-                'responseStatus'  => 403,
+                'responseStatus' => 403,
             ]);
+        });
+
+        $this->renderable(function (VotingException $e, $request) {
+            return response()->view('errors.voting',
+                [
+                    'error' => '00',
+                    'title' => 'Error',
+                    'description' => 'Error en votación'
+                ], 200);
         });
     }
 }

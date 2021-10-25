@@ -20,6 +20,9 @@ class CreateUserVotingTable extends Migration
             $table->timestamps();
 
             $table->unique(['voting_id', 'user_id']);
+
+            $table->foreign('voting_id')->references('id')->on('votings');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

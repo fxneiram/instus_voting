@@ -9,9 +9,11 @@ use App\Http\Requests\CreateVotingRequest;
 use App\Http\Requests\UpdateVotingRequest;
 use App\Models\Voting;
 use App\Repositories\VotingRepository;
+use Carbon\Carbon;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Response;
 
 class VotingController extends AppBaseController
@@ -22,6 +24,13 @@ class VotingController extends AppBaseController
     public function __construct(VotingRepository $votingRepo)
     {
         $this->votingRepository = $votingRepo;
+        /*
+         $this->middleware('permission:roles.index')->only('index');
+        $this->middleware('permission:roles.create')->only(['create', 'store']);
+        $this->middleware('permission:roles.edit')->only(['edit', 'update']);
+        $this->middleware('permission:roles.show')->only('show');
+        $this->middleware('permission:roles.destroy')->only('destroy');
+         */
     }
 
     /**
@@ -185,6 +194,11 @@ class VotingController extends AppBaseController
         return redirect(route('votings.index'));
     }
 
+    public function result($voting)
+    {
+        return view('voting_result');
+    }
+
     public function choice($id)
     {
         $voting = $this->votingRepository->find($id);
@@ -192,14 +206,44 @@ class VotingController extends AppBaseController
         if (empty($voting)) {
             Flash::error('Voting not found');
 
-            return redirect(route('votings.index'));
+            return redirect(route('home'));
+        }
+
+        if ($voting->end_at->lt(Carbon::now())) {
+            Flash::error('Esta votación ya se cerró');
+
+            return redirect(route('home'));
+        }
+
+        if ($voting->end_at->lt(Carbon::now())) {
+            Flash::error('Esta votación ya se cerró');
+
+            return redirect(route('home'));
         }
 
         return view('chose')->with('voting', $voting);
     }
 
+    /**
+     * Update the specified Voting in storage.
+     *
+     * @param int $id
+     * @param ChoseRequest $request
+     *
+     */
     public function chose($id, ChoseRequest $requests)
     {
-        dd($requests->all());
+        $voting = $this->votingRepository->find($id);
+
+        $user = Auth::user();
+
+        if ($user->vote($requests->all())) {
+
+            return redirect(route('voting.result', $id));
+        }
+
+        Flash::error('Su voto no pude ser registrado');
+
+        return redirect(route('voting.choice', $id));
     }
 }

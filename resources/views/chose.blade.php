@@ -32,6 +32,7 @@
     </section>
 
     <div class="content px-3">
+        @include('adminlte-templates::common.errors')
         <div class="card">
             <div class="card-body">
                 <div class="row">
@@ -46,6 +47,7 @@
                                     @csrf
                                     {{ Form::hidden('option_id', $option->id) }}
                                     {{ Form::hidden('voting_id',  $voting->id) }}
+                                    {{ Form::hidden('user_id',  0) }}
                                     <button type="submit" class="chosen-option" title="Vote Aquí">
                                         <div class="info-box">
                                             <span class="info-box-icon bg-info"><i
