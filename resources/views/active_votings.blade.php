@@ -38,7 +38,7 @@
                                 </a>
                             @endcan
                             @can('gestion votacion')
-                                <a href="#" class=" btn btn-default btn-sm text-muted" title="Resultados">
+                                <a href="{{ route('votings.show', $voting->id ) }}" class=" btn btn-default btn-sm text-muted" title="Resultados">
                                     <i class="fas fa-eye"></i>
                                     Ver
                                 </a>

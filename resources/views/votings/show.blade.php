@@ -21,7 +21,16 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    @include('votings.show_fields')
+                    <div class="col-sm-8">
+                        <div class="row">
+                            @include('votings.chart')
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="row">
+                            @include('votings.show_fields')
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

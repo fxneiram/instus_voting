@@ -5,6 +5,7 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class Voting
@@ -71,4 +72,38 @@ class Voting extends Model
         return $this->hasMany(Option::class);
     }
 
+    public function results()
+    {
+        return $this->hasMany(VotingResult::class);
+    }
+
+    public function countVotes()
+    {
+        $results = $this->results;
+        $total = 0;
+
+        foreach ($results as $result) {
+            $total += $result->total;
+        }
+
+        return $total;
+    }
+
+    public function formatedResults()
+    {
+        $results = $this->results->toArray();
+        $formated_result = [];
+        $tot = $this->countVotes();
+
+        foreach ($results as $result) {
+            array_push($formated_result,
+                [
+                    'description' => Option::find($result['option_id'])->description,
+                    'total' => $result['total'],
+                    'percentage' => $tot != 0 ? $result['total'] * 100 / $tot : 0
+                ]);
+        }
+
+        return $formated_result;
+    }
 }
