@@ -117,7 +117,7 @@ class OptionController extends AppBaseController
      *
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($voting, $id)
     {
         $option = $this->optionRepository->find($id);
 
@@ -131,6 +131,6 @@ class OptionController extends AppBaseController
 
         Flash::success('Option deleted successfully.');
 
-        return redirect(route('options.index'));
+        return redirect(route('options.index', $voting));
     }
 }
