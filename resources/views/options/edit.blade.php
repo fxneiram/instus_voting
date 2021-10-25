@@ -17,7 +17,7 @@
 
         <div class="card">
 
-            {!! Form::model($option, ['route' => ['options.update', $option->id], 'method' => 'patch']) !!}
+            {!! Form::model($option, ['route' => ['options.update', $voting, $option->id], 'method' => 'patch']) !!}
 
             <div class="card-body">
                 <div class="row">

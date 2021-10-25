@@ -49,6 +49,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('votings/{voting}/options/{option}/edit', [App\Http\Controllers\OptionController::class, 'edit'])
         ->name('options.edit');
 
-    Route::patch('options/{option}/update', [App\Http\Controllers\OptionController::class, 'update'])
+    Route::patch('votings/{voting}/options/{option}/update', [App\Http\Controllers\OptionController::class, 'update'])
         ->name('options.update');
 });

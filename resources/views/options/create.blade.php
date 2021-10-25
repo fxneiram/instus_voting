@@ -30,7 +30,7 @@
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('options.index',$voting) }}" class="btn btn-default">Cancel</a>
+                <a href="{{ route('options.index', $voting) }}" class="btn btn-default">Cancel</a>
             </div>
 
             {!! Form::close() !!}

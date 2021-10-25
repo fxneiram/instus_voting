@@ -62,25 +62,6 @@ class OptionController extends AppBaseController
         return redirect(route('options.index', $voting));
     }
 
-    /**
-     * Display the specified Option.
-     *
-     * @param int $id
-     *
-     * @return Response
-     */
-    public function show($id)
-    {
-        $option = $this->optionRepository->find($id);
-
-        if (empty($option)) {
-            Flash::error('Option not found');
-
-            return redirect(route('options.index'));
-        }
-
-        return view('options.show')->with('option', $option);
-    }
 
     /**
      * Show the form for editing the specified Option.
@@ -89,7 +70,7 @@ class OptionController extends AppBaseController
      *
      * @return Response
      */
-    public function edit($id)
+    public function edit($voting, $id)
     {
         $option = $this->optionRepository->find($id);
 
@@ -99,7 +80,9 @@ class OptionController extends AppBaseController
             return redirect(route('options.index'));
         }
 
-        return view('options.edit')->with('option', $option);
+        return view('options.edit')
+            ->with('voting', $voting)
+            ->with('option', $option);
     }
 
     /**
@@ -110,21 +93,21 @@ class OptionController extends AppBaseController
      *
      * @return Response
      */
-    public function update($id, UpdateOptionRequest $request)
+    public function update($voting, $id, UpdateOptionRequest $request)
     {
         $option = $this->optionRepository->find($id);
 
         if (empty($option)) {
             Flash::error('Option not found');
 
-            return redirect(route('options.index'));
+            return redirect(route('options.index', $voting));
         }
 
         $option = $this->optionRepository->update($request->all(), $id);
 
         Flash::success('Option updated successfully.');
 
-        return redirect(route('options.index'));
+        return redirect(route('options.index', $voting));
     }
 
     /**
